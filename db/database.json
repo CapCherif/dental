@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nom": "ssp astivum",
+        "infos": "infos... 1",
+        "genes": "Gene du triticum aestivum..."
+    },
+    {
+        "id": 2,
+        "nom": "ssp spelta",
+        "infos": "infos... 2",
+        "genes": "Gene du triticum aestivum...ssp spelta"
+    },
+    {
+        "id": 3,
+        "nom": "turgidum",
+        "infos": "infos... 3",
+        "genes": "Gene du triticum aestivum...turgidum"
+    },
+    {
+        "id": 4,
+        "nom": "monococcum",
+        "infos": "infos... 4",
+        "genes": "Gene du triticum aestivum...monococcum"
+    }
+]

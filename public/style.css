@@ -1,0 +1,108 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fond.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+nav{
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    box-shadow: 1px 1px 10px 1px rgb(221, 221, 221);
+}
+#logo{
+    padding: 10px 0px;
+    text-align: center;
+    color: white;
+    background-color: rgb(12, 107, 151);
+}
+#logo i{
+    font-size: 40px;
+}
+#links{
+    background-color: white;
+    text-align: center;
+    font-size: 14px;
+    padding: 5px 0px;
+}
+#links a{
+    text-decoration: none;
+    margin-left: 5px;
+    transition: 0.2s;
+    color: rgb(92, 92, 92);
+}
+#links a:hover{
+    color: orange !important;
+    transition: 0.2s;
+}
+
+.content{
+    max-width: 800px;
+    margin: 100px auto 50px;
+    background-color: rgb(250, 250, 250);
+    padding: 50px;
+}
+
+#content h1{
+    text-align: center;
+}
+#content p{
+    color: rgb(87, 87, 87);
+    font-size: 14px;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.flex img{
+    border-radius: 50%;
+    margin:auto;
+    display: block;
+}
+.flex p{
+    max-width: 400px;
+}
+
+.current{
+    color: orange !important;
+}
+
+#critere input{
+    border: 1px solid rgb(163, 163, 163);
+    padding: 8px;
+}
+#critere button{
+    border: none;
+    padding: 8px;
+    color: white;
+    background-color: rgb(31, 119, 219);
+    transition: 0.2s;
+    border-radius: 2px;
+}
+
+#critere button:hover{
+    background-color: rgb(53, 139, 238);
+    transition: 0.2s;
+    cursor: pointer;
+}
+.lighten{
+    background-color: rgb(31, 119, 219,0.5) !important;
+    display: none;
+}
+.err{
+    color: red;
+    display: none;
+}
+
+.animation{
+    position: fixed;
+    top: 300px;
+    left: 40%;
+    display: none;
+}
