@@ -92,6 +92,7 @@ app.use(function (req, res) {
 })
 
 
-app.listen(3000, ()=>{
-    console.log('listening to port 3000')
+const server = app.listen(process.env.PORT || 5000, ()=>{
+    const port =server.address().port;
+    console.log('listening to port ', port)
 })
