@@ -8,12 +8,22 @@
     .img img{
         width: 250px !important;
         height: 200px !important;
-        
+        border-radius: 40%;
     }
-
-    /* .section img{
-        width: 250px;
-        height: 180px;    
-    } */
-    
+    .aside{
+        margin: 10px auto;
+    }
+    .section, .container_img{
+        width: 300px;
+    }
+    .container_img{
+        height: 220px ;
+    }
+    .section img{
+        width: 300px;
+        height: 220px;    
+    }
+    .deplace{
+        top: 200px;
+    }
 }
