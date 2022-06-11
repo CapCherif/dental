@@ -82,11 +82,12 @@ nav{
     background-color: orange;
     transition: 0.2s;
 }
+
 .img img{
     width: 500px ;
     height: 300px;
-    display: block;
-    margin: auto;
+    display: block !important;
+    margin: auto !important;
 }
 #critere input{
     border: 1px solid rgb(163, 163, 163);
