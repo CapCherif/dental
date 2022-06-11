@@ -15,6 +15,7 @@
     }
     .section, .container_img{
         width: 300px;
+        margin: auto;
     }
     .container_img{
         height: 220px ;
