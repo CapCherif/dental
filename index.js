@@ -22,6 +22,24 @@ app.get('/', (req,res)=>{
 })
 
 
+app.get('/us', (req,res)=>{
+    res.render('us')
+})
+
+
+app.get('/cuisiner', (req,res)=>{
+    res.render('cuisiner')
+})
+
+
+app.get('/espace', (req,res)=>{
+    res.render('espace')
+})
+
+app.get('/celiaq', (req,res)=>{
+    res.render('celiaq')
+})
+
 app.get('/search', (req,res)=>{
     res.render('search')
 })
@@ -38,7 +56,7 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
         databases = JSON.parse(data);
         gene = null;
         databases.forEach((g)=>{
-            if(g.nom.search(req.body.nom) != -1){
+            if(g.nom.toUpperCase().search(req.body.nom.toUpperCase()) != -1){
                 gene = g;
             }
         })
