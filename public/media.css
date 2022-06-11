@@ -1,11 +1,10 @@
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     
    
     .img img{
         width: 380px !important;
         height: 250px !important;
-        display: block;
-        margin: auto;
+        
     }
     
 }

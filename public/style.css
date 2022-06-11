@@ -85,6 +85,8 @@ nav{
 .img img{
     width: 500px ;
     height: 300px;
+    display: block;
+    margin: auto;
 }
 #critere input{
     border: 1px solid rgb(163, 163, 163);
