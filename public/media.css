@@ -32,4 +32,9 @@
     .deplace{
         top: 200px;
     }
+
+    .pres{
+        width: 350px !important;
+        height: 220px;
+    }
 }
