@@ -32,9 +32,7 @@ app.get('/cuisiner', (req,res)=>{
 })
 
 
-app.get('/espace', (req,res)=>{
-    res.render('espace')
-})
+
 
 app.get('/celiaq', (req,res)=>{
     res.render('celiaq')
@@ -50,23 +48,17 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
     let databases = {};
     try {
 
-        let data = fs.readFileSync('./db/database.json', 'utf8');
+        let data = fs.readFileSync('./db/db.json', 'utf8');
 
         // parse JSON string to JSON object
         databases = JSON.parse(data);
-        gene = null;
+        allele = {}
         databases.forEach((g)=>{
-            if(g.nom.toUpperCase().search(req.body.nom.toUpperCase()) != -1){
-                gene = g;
+            if(g.id == req.body.id){
+                allele = g.types
             }
         })
-        if(gene == null){
-            res.json({gene:null})
-
-        }else{
-            res.json({gene:gene})
-
-        }
+        res.json({res: allele})
         
     } catch (err) {
         console.log(`Error reading file from disk: ${err}`);
