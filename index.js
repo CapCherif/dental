@@ -42,6 +42,9 @@ app.get('/search', (req,res)=>{
     res.render('search')
 })
 
+app.get('/contact', (req,res)=>{
+    res.render('contact')
+})
 
 app.post('/load_info', urlencodedparser, (req,res)=>{
     // loading info from db
@@ -78,6 +81,31 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
 
 
 
+app.post('/post_msg', urlencodedparser,  (req,res)=>{
+
+    var mailOptions = {
+      from: 'projet de master',
+      to: 'gharbi_cherif@hotmail.com',
+    //   to: 'brahamiines84@gmail.com',
+      subject: "Message",
+      text: "name: " + req.body.nom + " " + '\n' + " email :" +
+      req.body.email  +'\n' + "phone : "+ req.body.phone + '\n' + "message : " + req.body.msg
+    };
+    
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        } else {
+        res.json({res:true});
+        }
+    });
+     
+    
+})
+
+
+
 
 
 
@@ -106,3 +134,15 @@ const server = app.listen(process.env.PORT || 5000, ()=>{
     const port =server.address().port;
     console.log('listening to port ', port)
 })
+
+
+
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'med03cherif@gmail.com',
+    pass: 'uejhggapyygjlenl'
+  }
+});

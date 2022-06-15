@@ -1,0 +1,68 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="animation.css">
+    <title>Accueil</title>
+</head>
+<body>
+
+    <nav>
+        <div id="logo">
+            <i class="fa-solid fa-dna"></i>
+        </div>
+        <div id="links">
+            <a href="/">Accueil</a>
+            <a href="/search" >Rechercher</a>
+            
+            <a href="/contact" class="current">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="animation">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <div class="content" style="padding: 50px;">
+        <center>
+            <h2>Contactez Nous</h2>
+        <small style="color:gray">Veuillez à bien remplir les champs ce-dessous</small>
+        </center>
+        <form  class="form" id="form_submit">
+            <div class="flex">
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom" required>
+            </div>
+            <div class="flex">
+                <label for="tel">Téléphone :</label>
+                <input type="text" id="tel" name="tel" required>
+            </div>
+            <div class="flex">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="flex">
+                <label for="msg">Message :</label>
+                <textarea name="msg" id="msg" required ></textarea>
+            </div>
+            <button type="submit" name="submit">Envoyer</button>
+            <div class="success">Message envoyé avec succès.</div>
+        </form>
+        
+    </div>
+
+
+    <script src="jq.js"></script>
+    <script src="contact.js"></script>
+</body>
+
+</html>

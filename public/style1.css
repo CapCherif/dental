@@ -264,6 +264,13 @@ select{
     background-color: rgb(160, 245, 179);
 }
 
+.success{
+    padding: 8px 0px;
+    background-color: rgb(177, 233, 177);
+    color: green;
+    text-align: center;
+}
+
 
 
 
