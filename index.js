@@ -84,8 +84,8 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
 app.post('/post_msg', urlencodedparser,  (req,res)=>{
 
     var mailOptions = {
-      from: 'projet de master',
-      to: 'gharbi_cherif@hotmail.com',
+      from: 'Message du projet de Master',
+      to: 'brahamiines84@gmail.com',
     //   to: 'brahamiines84@gmail.com',
       subject: "Message",
       text: "name: " + req.body.nom + " " + '\n' + " email :" +
