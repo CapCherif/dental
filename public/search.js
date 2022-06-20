@@ -3,7 +3,7 @@
 $('#search').on('click',function(){
     
 
-    console.log(parseInt($('#nom_bio').val()[1]))
+    console.log(parseInt($('#nom_bio').val().slice(1,)))
         // animation
         $('.animation').show()
         $('.lighten').show()
@@ -12,7 +12,7 @@ $('#search').on('click',function(){
         $.ajax({
             type:'POST',
             url:'/load_info',
-            data:{id:$('#nom_bio').val()[1]},
+            data:{id:parseInt($('#nom_bio').val().slice(1, ))},
             success:function(res){
                 
                 
@@ -78,7 +78,7 @@ function Start(){
     $('.pgc button').on('click',function(e){
         var s = $(e.target).parent().parent().find('.sqn').text()
 
-        console.log(s.slice(0,5))
+       
         $(e.target).parent().find("div").text(Pgc(s))
     })
 }

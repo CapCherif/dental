@@ -181,6 +181,12 @@ nav{
 #sec5 a{
     background-color: rgb(9, 95, 121);
 }
+#sec6 a{
+    background-color: rgb(167, 10, 167);
+}
+#sec7 a{
+    background-color: rgb(158, 64, 64);
+}
 .txt a{
     text-decoration: none;
     padding: 8px 12px;
@@ -210,6 +216,12 @@ nav{
 }
 #sec5 .deplace{
     background-color: rgb(10, 110, 168);
+}
+#sec6 .deplace{
+    background-color: rgba(150, 8, 150, 0.884);
+}
+#sec7 .deplace{
+    background-color: rgb(158, 64, 64);
 }
 footer{
     padding: 20px 50px;
@@ -264,12 +276,6 @@ select{
     background-color: rgb(160, 245, 179);
 }
 
-.success{
-    padding: 8px 0px;
-    background-color: rgb(177, 233, 177);
-    color: green;
-    text-align: center;
-}
 
 
 
@@ -299,4 +305,31 @@ select{
     width: 400px;
     height: 300px;
     border-radius: 30px;
+}
+
+/* #prot_div{
+    width: 450px;
+} */
+#prot{
+    width: 100%;
+    height: auto;
+}
+
+footer a{
+    text-decoration: none;
+
+}
+
+#article a{
+    padding: 8px;
+    background-color: rgb(10, 110, 168);
+    color: white;
+    border-radius: 3px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+#article a:hover{
+    cursor: pointer;
+    background-color: rgb(16, 131, 197);
+    transition: 0.2s;
 }

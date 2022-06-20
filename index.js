@@ -45,6 +45,27 @@ app.get('/search', (req,res)=>{
 app.get('/contact', (req,res)=>{
     res.render('contact')
 })
+app.get('/ado', (req,res)=>{
+    res.render('ado')
+})
+
+app.get('/enfant', (req,res)=>{
+    res.render('enfant')
+})
+
+app.get('/boulanger', (req,res)=>{
+    res.render('boulanger')
+})
+
+app.get('/allergie', (req,res)=>{
+    res.render('allergie')
+})
+app.get('/wdeia', (req,res)=>{
+    res.render('wdeia')
+})
+
+
+
 
 app.post('/load_info', urlencodedparser, (req,res)=>{
     // loading info from db
@@ -56,12 +77,23 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
         // parse JSON string to JSON object
         databases = JSON.parse(data);
         allele = {}
-        databases.forEach((g)=>{
-            if(g.id == req.body.id){
-                allele = g.types
-            }
+        let promise = new Promise((resolve, reject)=>{
+            databases.forEach((g)=>{
+            
+                if(parseInt(g.id) == parseInt(req.body.id)){
+                    allele = g.types
+                    
+                }
+            })
+
+            resolve(allele)
+
         })
-        res.json({res: allele})
+        promise.then((allele)=>{
+            res.json({res: allele})
+        })
+        
+        
         
     } catch (err) {
         console.log(`Error reading file from disk: ${err}`);

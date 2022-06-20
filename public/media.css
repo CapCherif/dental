@@ -37,4 +37,15 @@
         width: 300px !important;
         height: 220px;
     }
+
+    .recette img{
+        margin: 10px auto;
+        display: block;
+        width: 300px;
+        height: 210px;
+    }
+    
+    .rev{
+        flex-direction: column-reverse;
+    }
 }
