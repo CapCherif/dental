@@ -3,7 +3,7 @@
 $('#search').on('click',function(){
     
 
-    console.log(parseInt($('#nom_bio').val().slice(1,)))
+    // console.log(parseInt($('#nom_bio').val().slice(1,)))
         // animation
         $('.animation').show()
         $('.lighten').show()
@@ -18,9 +18,18 @@ $('#search').on('click',function(){
                 
                     $('#result').empty()
                     console.log(res.res)
-                    const keys = Object.keys(res.res);
                     var object = res.res
                     var t = "";
+                    if(object[0]['GenBank Proteine']=="CAH69206"){
+                        t += `
+                            <h2>Espèce :Triticum turgidum ssp durum</h2> 
+                        `;
+                    }
+                    else{
+                        t += `
+                            <h2>Espèce :Triticum aestivum</h2> 
+                        `;
+                    }
                     for (var i= 0; i < object.length; i++) {  
                         t += `
                         <div class="type">
