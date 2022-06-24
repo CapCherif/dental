@@ -20,7 +20,7 @@ $('#search').on('click',function(){
                     console.log(res.res)
                     var object = res.res
                     var t = "";
-                    if(object[0]['GenBank Proteine']=="CAH69206"){
+                    if(object[0]['GenBank proteine']=="CAH69206"){ 
                         t += `
                             <h2>Espèce :Triticum turgidum ssp durum</h2> 
                         `;
@@ -36,7 +36,7 @@ $('#search').on('click',function(){
                             <h4>Type : ${object[i]["type"]}</h4>
                             <div>
                                 <p class="seq">Séquence Protéique: <br>${object[i]['Sequence proteique']}</p>
-                                <p> GenBank Proteine: ${object[i]['GenBank Proteine']}</p>
+                                <p> GenBank Proteine: ${object[i]['GenBank proteine']}</p>
                                 <p> Séquence Nucléotidique: <br><span class="sqn">${object[i]['Sequence nucleotidique']}</span></p>
                                 <p>Genbank Nucléotide :${object[i]['GenBank nucleotide']}</p>
                                 <p>Uniprot:${object[i]['Uniprot']}</p>
