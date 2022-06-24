@@ -252,8 +252,9 @@ footer{
 
 select{
     padding: 8px 0px;
-    max-width: 350px;
+    max-width: 200px;
 }
+
 
 .form {
     max-width: 500px;
