@@ -15,84 +15,43 @@ let fs = require('fs');
 app.use(express.static(path.join(__dirname + '/public')))
 app.set('view engine', 'ejs')
 
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
 
+app.use(function (req, res, next) {
 
-app.get('/', (req,res)=>{
-    res.render('index')
-})
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-app.get('/us', (req,res)=>{
-    res.render('us')
-})
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
-app.get('/cuisiner', (req,res)=>{
-    res.render('cuisiner')
-})
-
-
-
-
-app.get('/celiaq', (req,res)=>{
-    res.render('celiaq')
-})
-
-app.get('/search', (req,res)=>{
-    res.render('search')
-})
-
-app.get('/contact', (req,res)=>{
-    res.render('contact')
-})
-app.get('/ado', (req,res)=>{
-    res.render('ado')
-})
-
-app.get('/enfant', (req,res)=>{
-    res.render('enfant')
-})
-
-app.get('/boulanger', (req,res)=>{
-    res.render('boulanger')
-})
-
-app.get('/allergie', (req,res)=>{
-    res.render('allergie')
-})
-app.get('/wdeia', (req,res)=>{
-    res.render('wdeia')
-})
+    // Pass to next layer of middleware
+    next();
+});
 
 
 
 
-app.post('/load_info', urlencodedparser, (req,res)=>{
+
+
+
+
+app.get('/get_rdv', (req,res)=>{
     // loading info from db
-    let databases = {};
     try {
 
-        let data = fs.readFileSync('./db/db.json', 'utf8');
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
 
-        // parse JSON string to JSON object
-        databases = JSON.parse(data);
-        allele = {}
-        let promise = new Promise((resolve, reject)=>{
-            databases.forEach((g)=>{
-            
-                if(parseInt(g.id) == parseInt(req.body.id)){
-                    allele = g.types
-                    
-                }
-            })
-
-            resolve(allele)
-
-        })
-        promise.then((allele)=>{
-            res.json({res: allele})
-        })
-        
+        res.json({rdvs:rdvs.slice(0,20)})
         
         
     } catch (err) {
@@ -102,41 +61,132 @@ app.post('/load_info', urlencodedparser, (req,res)=>{
 })
 
 
+app.get('/get_one/:id', (req,res)=>{
+    try {
 
-
-
-
-
-
-
-
-
-
-
-app.post('/post_msg', urlencodedparser,  (req,res)=>{
-
-    var mailOptions = {
-      from: 'Message du projet de Master',
-      to: 'brahamiines84@gmail.com',
-    //   to: 'brahamiines84@gmail.com',
-      subject: "Message",
-      text: "name: " + req.body.nom + " " + '\n' + " email :" +
-      req.body.email  +'\n' + "phone : "+ req.body.phone + '\n' + "message : " + req.body.msg
-    };
-    
-
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-        console.log(error);
-        } else {
-        res.json({res:true});
-        }
-    });
-     
-    
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        let one ;
+        rdvs.forEach((rdv)=>{
+            if(rdv.id == req.params.id){
+                one = rdv;
+            }
+        })
+        res.json({rdv:one})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
 })
 
 
+app.delete('/delete/:id', urlencodedparser, (req,res)=>{
+    try {
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        rdvs.forEach((rdv,index)=>{
+            if(rdv.id == req.params.id){
+                rdvs.splice(index, 1)
+            }
+        })
+
+        let data1 = JSON.stringify(rdvs, null, 4);
+    
+        // write file to disk
+        fs.writeFileSync('./db/rdvs.json',data1, 'utf8');
+        res.json({done:true})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
+})
+
+
+
+app.post('/add', urlencodedparser, (req,res)=>{
+    try {
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        rdvs.unshift({
+            id:req.body.id,
+            nom:req.body.nom,
+            prenom:req.body.prenom,
+            date:req.body.date,
+            medecin:req.body.medecin,
+            detail:req.body.detail,
+        })
+
+        let data1 = JSON.stringify(rdvs, null, 4);
+    
+        // write file to disk
+        fs.writeFileSync('./db/rdvs.json',data1, 'utf8');
+        res.json({done:true})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
+})
+
+
+app.post('/update/:id', urlencodedparser, (req,res)=>{
+    try {
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        rdvs.forEach((rdv)=>{
+            if(rdv.id == req.body.id){
+                rdv.nom=req.body.nom
+                rdv.prenom=req.body.prenom
+                rdv.date=req.body.date
+                rdv.medecin=req.body.medecin
+                rdv.detail=req.body.detail
+            }
+        })
+        
+
+        let data1 = JSON.stringify(rdvs, null, 4);
+    
+        // write file to disk
+        fs.writeFileSync('./db/rdvs.json',data1, 'utf8');
+        res.json({done:true})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
+})
+
+
+
+app.post('/filter', urlencodedparser, (req,res)=>{
+    try {
+
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        let filtered = [] 
+        rdvs.forEach((rdv)=>{
+            if(rdv[req.body.filter].indexOf(req.body.saisie) != -1){
+                filtered.push(rdv)
+            }
+        })
+        res.json({rdvs:filtered})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
+})
+
+
+app.get('/all', urlencodedparser, (req,res)=>{
+    try {
+
+        let rdvs = JSON.parse(fs.readFileSync('./db/rdvs.json', 'utf8'));
+        
+        res.json({rdvs})
+        
+        
+    } catch (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    }
+})
 
 
 
@@ -168,13 +218,3 @@ const server = app.listen(process.env.PORT || 5000, ()=>{
 })
 
 
-
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'brahamiproject@gmail.com',
-    pass: 'fxvuzkoiccyuaecv'
-  }
-});
